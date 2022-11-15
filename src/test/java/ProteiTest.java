@@ -8,7 +8,7 @@ public class ProteiTest extends BaseTest {
 
     @Test
     public void testLoginHappyPath() {
-        Boolean actualResult =
+        boolean actualResult =
                 openURL()
                         .fillLoginEmailField(getEMAIL())
                         .fillPasswordField(getPASSWORD())
@@ -20,7 +20,7 @@ public class ProteiTest extends BaseTest {
 
     @Test
     public void testLogInNegativeUpperCasePassword() {
-        Boolean actualResult =
+        boolean actualResult =
                 openURL()
                         .fillLoginEmailField(getEMAIL())
                         .fillPasswordField(getPASSWORD().toUpperCase())
@@ -35,62 +35,48 @@ public class ProteiTest extends BaseTest {
     public void verifyLogInErrorMessageWrongPassword() {
         String actualErrorMessage =
                 openURL()
-                        .logIn(getEMAIL(),"wrongPass")
+                        .logIn(getEMAIL(), "wrongPass")
                         .clickLogInButton()
                         .getInvalidDataMessageText();
 
         Assert.assertEquals(actualErrorMessage, "Неверный E-Mail или пароль");
     }
 
-//    @Test
-//    public void verifyLogInErrorMessageNoData() {
-//        String actualErrorMessage =
-//                openURL()
-//                        .clickLogInButton()
-//                        .getInvalidDataMessageText(); wrong locator here
-//
-//        Assert.assertEquals(actualErrorMessage,"Неверный формат E-Mail");
-//    }
+    @Test
+    public void verifyLogInErrorMessageNoData() {
+        String actualErrorMessage =
+                openURL()
+                        .clickLogInButton()
+                        .getEmailFormatErrorText();
 
-//
-//    @Test
-//    public void testFormE2EHappyPath() {
-//        final String expectedSuccessMessage = "Данные добавлены.";
-//
-//        logIn();
-//
-//        getElement(id("dataEmail")).sendKeys("youshould@hire.me");
-//        getElement(id("dataName")).sendKeys("Sabina");
-//
-//        Select select = new Select(getElement(id("dataGender")));
-//        select.selectByVisibleText("Женский");
-//
-//        getElement(id("dataCheck11")).click();
-//        getElement(id("dataCheck12")).click();
-//
-//        getElement(id("dataSelect23")).click();
-//
-//        clickSubmitInputButton();
-//
-//        WebElement successMessage = new WebDriverWait(driver, Duration.ofMillis(2000))
-//                .until(ExpectedConditions
-//                        .visibilityOfElementLocated(
-//                                xpath("//div[@class='uk-margin uk-modal-content']")));
-//
-//        String actualSuccessMessage = successMessage.getText();
-//
-//        Assert.assertEquals(actualSuccessMessage, expectedSuccessMessage);
-//    }
-//
-//    @Test
-//    public void verifyEmptyFormErrorMessage() {
-//        final String expectedEmptyFormErrorMessage = "Неверный формат E-Mail";
-//
-//        logIn();
-//        clickSubmitInputButton();
-//
-//        Assert.assertEquals(getElementText(id("emailFormatError")), expectedEmptyFormErrorMessage);
-//    }
+        Assert.assertEquals(actualErrorMessage, "Неверный формат E-Mail");
+    }
 
 
+    @Test
+    public void testFormE2EHappyPath() {
+        openURL()
+                .logIn(getEMAIL(), getPASSWORD())
+                .fillDataEmailField("youshould@hire.me")
+                .fillNameField("Sabina")
+                .selectFromDropdown("Женский")
+                .clickCheckBox11()
+                .clickCheckBox12()
+                .clickSelect22()
+                .clickInputSubmitButton()
+                .waitSuccessMessageToBeVisible(getWait5());
+
+
+        Assert.assertEquals(new MainPage(getDriver()).getSuccessMessageText(), "Данные добавлены.");
+
+    }
+
+    @Test
+    public void verifyEmptyFormErrorMessage() {
+        openURL()
+                .logIn(getEMAIL(),getPASSWORD())
+                .clickInputSubmitButton();
+
+        Assert.assertEquals(new MainPage(getDriver()).getEmailFormatErrorText(), "Неверный формат E-Mail");
+    }
 }

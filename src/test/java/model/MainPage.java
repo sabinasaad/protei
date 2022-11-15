@@ -3,6 +3,9 @@ package model;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainPage extends BasePage {
 
@@ -27,7 +30,10 @@ public class MainPage extends BasePage {
     private WebElement dataEmailField;
 
     @FindBy(id = "dataName")
-    private WebElement dataNameField;
+    private WebElement nameField;
+
+    @FindBy(id = "dataGender")
+    private WebElement select;
 
     @FindBy(id = "dataCheck11")
     private WebElement checkBox11;
@@ -80,14 +86,81 @@ public class MainPage extends BasePage {
         return this;
     }
 
-
     public String getInvalidDataMessageText() {
+
         return invalidDataErrorMessage.getText();
     }
 
+    public String getEmailFormatErrorText() {
+
+        return emailFormatErrorMessage.getText();
+    }
+
+    public MainPage fillDataEmailField(String value) {
+        dataEmailField.sendKeys(value);
+
+        return this;
+    }
+
+    public MainPage fillNameField(String value) {
+        nameField.sendKeys(value);
+
+        return this;
+    }
+
+    public MainPage selectFromDropdown(String value) {
+        new Select(select).selectByVisibleText(value);
+
+        return this;
+    }
+
+    public MainPage clickCheckBox11() {
+        checkBox11.click();
+
+        return this;
+    }
+
+    public MainPage clickCheckBox12() {
+        checkBox12.click();
+
+        return this;
+    }
+
+    public MainPage clickSelect21() {
+        select21.click();
+
+        return this;
+    }
+
+    public MainPage clickSelect22() {
+        select22.click();
+
+        return this;
+    }
+
+    public MainPage clickSelect23() {
+        select23.click();
+
+        return this;
+    }
+
+    public MainPage clickInputSubmitButton() {
+        inputSubmitButton.click();
+
+        return this;
+    }
 
     public boolean isInputSubmitButtonDisplayed() {
 
         return inputSubmitButton.isDisplayed();
+    }
+
+    public String getSuccessMessageText() {
+
+        return successMessage.getText();
+    }
+
+    public void waitSuccessMessageToBeVisible(WebDriverWait wait) {
+        wait.until(ExpectedConditions.visibilityOf(successMessage));
     }
 }

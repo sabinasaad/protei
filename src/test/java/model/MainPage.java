@@ -80,6 +80,12 @@ public class MainPage extends BasePage {
         return this;
     }
 
+
+    public String getInvalidDataMessageText() {
+        return invalidDataErrorMessage.getText();
+    }
+
+
     public boolean isInputSubmitButtonDisplayed() {
 
         return inputSubmitButton.isDisplayed();

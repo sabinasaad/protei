@@ -5,46 +5,53 @@ import org.testng.annotations.Test;
 
 public class ProteiTest extends BaseTest {
 
+
     @Test
     public void testLoginHappyPath() {
-        MainPage mainPage = new MainPage(getDriver())
-                .fillLoginEmailField(getEMAIL())
-                .fillPasswordField(getPASSWORD())
-                .clickLogInButton();
+        Boolean actualResult =
+                openURL()
+                        .fillLoginEmailField(getEMAIL())
+                        .fillPasswordField(getPASSWORD())
+                        .clickLogInButton()
+                        .isInputSubmitButtonDisplayed();
 
-        Assert.assertTrue(mainPage.isInputSubmitButtonDisplayed());
+        Assert.assertTrue(actualResult);
+    }
+
+    @Test
+    public void testLogInNegativeUpperCasePassword() {
+        Boolean actualResult =
+                openURL()
+                        .fillLoginEmailField(getEMAIL())
+                        .fillPasswordField(getPASSWORD().toUpperCase())
+                        .clickLogInButton()
+                        .isInputSubmitButtonDisplayed();
+
+        Assert.assertFalse(actualResult);
     }
 
 
-//    @Test
-//    public void testLogInNegativeUpperCasePassword() {
-//
-//        logIn(URL, EMAIL, PASSWORD.toUpperCase());
-//
-//        boolean actualResult = getSubmitInputButton().isDisplayed();
-//
-//        Assert.assertFalse(actualResult);
-//    }
-//
-//    @Test
-//    public void verifyLogInErrorMessageWrongPassword() {
-//        final String expectedErrorMessage = "Неверный E-Mail или пароль";
-//
-//        logIn(URL, EMAIL, "wrongpass");
-//        String actualErrorMessage = getElementText(id("invalidEmailPassword"));
-//
-//        Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
-//    }
-//
+    @Test
+    public void verifyLogInErrorMessageWrongPassword() {
+        String actualErrorMessage =
+                openURL()
+                        .logIn(getEMAIL(),"wrongPass")
+                        .clickLogInButton()
+                        .getInvalidDataMessageText();
+
+        Assert.assertEquals(actualErrorMessage, "Неверный E-Mail или пароль");
+    }
+
 //    @Test
 //    public void verifyLogInErrorMessageNoData() {
-//        final String expectedErrorMessage = "Неверный формат E-Mail";//тут можно было бы прописать другое сообщение
+//        String actualErrorMessage =
+//                openURL()
+//                        .clickLogInButton()
+//                        .getInvalidDataMessageText(); wrong locator here
 //
-//        logIn(URL, "", "");
-//        String actualErrorMessage = getElementText(id("emailFormatError"));
-//
-//        Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
+//        Assert.assertEquals(actualErrorMessage,"Неверный формат E-Mail");
 //    }
+
 //
 //    @Test
 //    public void testFormE2EHappyPath() {

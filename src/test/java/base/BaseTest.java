@@ -1,6 +1,7 @@
 package base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import model.MainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -13,12 +14,14 @@ public abstract class BaseTest {
     final private String PASSWORD = "test";
     private WebDriver driver;
 
-    protected WebDriver getDriver() {
+    public WebDriver getDriver() {
         return driver;
     }
 
-    protected void openURL() {
+    public MainPage openURL() {
         driver.get(URL);
+
+        return new MainPage(getDriver());
     }
 
     public String getEMAIL() {
@@ -30,18 +33,18 @@ public abstract class BaseTest {
     }
 
     @BeforeClass
-    void setupClass() {
+    public void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
 
     @BeforeMethod
-    void setupTest() {
+    public void setupTest() {
         driver = new ChromeDriver();
-        openURL();
     }
 
     @AfterMethod
-    void quit() {
+    public void quit() {
         driver.quit();
     }
+
 }

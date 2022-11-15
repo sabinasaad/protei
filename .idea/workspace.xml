@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3cb6a9c7-49ba-48cc-ba4e-b58a6a6dc253" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ProteiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ProteiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/model/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/MainPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,6 +79,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ProteiTest.testLogInNegativeUpperCasePassword" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="protei" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ProteiTest" />
+      <option name="METHOD_NAME" value="testLogInNegativeUpperCasePassword" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ProteiTest.testLoginHappyPath" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="protei" />
       <option name="PACKAGE_NAME" value="" />
@@ -91,25 +103,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProteiTest.verifyErrorMessageNoData" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="protei" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ProteiTest" />
-      <option name="METHOD_NAME" value="verifyErrorMessageNoData" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="TestNG.ProteiTest" />
+        <item itemvalue="TestNG.ProteiTest.testLogInNegativeUpperCasePassword" />
+        <item itemvalue="TestNG.ProteiTest.testLoginHappyPath" />
         <item itemvalue="TestNG.ProteiTest.testFormE2EHappyPath" />
         <item itemvalue="TestNG.ProteiTest.VerifyEmptyFormErrorMessage" />
-        <item itemvalue="TestNG.ProteiTest.testLoginHappyPath" />
-        <item itemvalue="TestNG.ProteiTest.verifyErrorMessageNoData" />
       </list>
     </recent_temporary>
   </component>

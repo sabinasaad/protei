@@ -50,8 +50,38 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//div[@class='uk-margin uk-modal-content']")
     private WebElement successMessage;
 
-
     public MainPage(WebDriver driver) {
         super(driver);
+    }
+
+    public MainPage fillLoginEmailField(String value) {
+        loginEmailField.sendKeys(value);
+
+        return this;
+    }
+
+    public MainPage fillPasswordField(String value) {
+        loginPasswordField.sendKeys(value);
+
+        return this;
+    }
+
+    public MainPage clickLogInButton() {
+        authSubmitButton.click();
+
+        return this;
+    }
+
+    public MainPage logIn(String email, String password) {
+        fillLoginEmailField(email)
+                .fillPasswordField(password)
+                .clickLogInButton();
+
+        return this;
+    }
+
+    public boolean isInputSubmitButtonDisplayed() {
+
+        return inputSubmitButton.isDisplayed();
     }
 }
